@@ -1,0 +1,22 @@
+{
+  "name": "@igloo15/basic-typescript-lib",
+  "version": "1.0.0",
+  "description": "basic typescript lib",
+  "main": "index.js",
+  "scripts": {
+    "update-version": "node ./configs/update-version.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igloo15/basic-typescript-lib.git"
+  },
+  "author": "igloo15",
+  "license": "MIT",
+  "devDependencies": {
+    "git-describe": "^4.0.4",
+    "read-pkg": "^5.2.0",
+    "typescript": "^3.7.5",
+    "write-pkg": "^4.0.0"
+  }
+}
