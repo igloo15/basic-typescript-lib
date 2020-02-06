@@ -1,7 +1,7 @@
 {
   "name": "@igloo15/basic-typescript-lib",
-  "oldVersion": "0.2.0-dev.1",
-  "version": "0.2.0-dev.3",
+  "oldVersion": "0.2.0-dev.3",
+  "version": "0.2.0-dev.4",
   "description": "basic typescript lib",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "build": "npm run clean && npm run src-build",
     "src-build": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
-    "lint": "eslint dist",
+    "lint": "eslint src/**",
     "test": "npm-run-all test:*",
     "test:lint": "npm run lint",
     "test:formatting": "prettier --write src/**/*.{json,ts,tsx,js,jsx,yaml,yml}",
@@ -19,7 +19,7 @@
     "git-tag": "cross-var git tag v$npm_package_version",
     "test-publish": "npm run ready-build && npm pack --dry-run",
     "publish": "npm run ready-build && git-tag && npm publish",
-    "ready-build": "npm-run-all clean build test update-version",
+    "ready-build": "npm-run-all clean test build update-version",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -53,6 +53,6 @@
     "write-pkg": "^4.0.0"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@igloo15/basic-typescript-lib@0.2.0-dev.3",
+  "_id": "@igloo15/basic-typescript-lib@0.2.0-dev.4",
   "date": "Thu Feb 06 2020"
 }

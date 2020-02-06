@@ -1,22 +1,28 @@
-const { gitDescribeSync } = require('git-describe');
-const writePkg = require('write-pkg');
-const readPkg = require('read-pkg');
+const { gitDescribeSync } = require("git-describe");
+const writePkg = require("write-pkg");
+const readPkg = require("read-pkg");
 
-const gitInfo = gitDescribeSync(__dirname+"/..");
+const gitInfo = gitDescribeSync(__dirname + "/..");
 const pkg = readPkg.sync();
 
 let version = gitInfo.semver.version;
 let dateString = `${new Date().toDateString()}`;
 
-if(gitInfo.distance > 0) {
-    version = gitInfo.semver.major+"."+(gitInfo.semver.minor+1)+".0"+"-dev."+gitInfo.distance;
+if (gitInfo.distance > 0) {
+  version =
+    gitInfo.semver.major +
+    "." +
+    (gitInfo.semver.minor + 1) +
+    ".0" +
+    "-dev." +
+    gitInfo.distance;
 }
 console.log(version);
 console.log(dateString);
-if(pkg.version !== version) {
-    pkg.oldVersion = pkg.version;
+if (pkg.version !== version) {
+  pkg.oldVersion = pkg.version;
 }
 pkg.version = version;
 pkg.date = dateString;
 
-writePkg.sync(__dirname+"/..", pkg);
+writePkg.sync(__dirname + "/..", pkg);
