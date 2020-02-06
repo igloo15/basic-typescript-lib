@@ -2,10 +2,13 @@ const replace = require('replace-in-file');
 const oldVersion = require('../package.json').oldVersion;
 const version = require('../package.json').version;
 
+if (!oldVersion) {
+    oldVersion = '##VersionReplace';
+}
 
 const options = {
   files: 'src/version.ts',
-  from: oldVersion ? oldVersion : '##VersionReplace##',
+  from: oldVersion,
   to: version,
 };
 

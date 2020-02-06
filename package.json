@@ -1,9 +1,9 @@
 {
   "name": "@igloo15/basic-typescript-lib",
   "oldVersion": "0.2.0-dev.1",
-  "version": "0.2.0-dev.1",
+  "version": "0.2.0-dev.3",
   "description": "basic typescript lib",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "update-version": "npm-run-all update-version-pkg update-version-file",
     "update-version-pkg": "node ./config/update-version.js",
@@ -16,7 +16,10 @@
     "test:lint": "npm run lint",
     "test:formatting": "prettier --write src/**/*.{json,ts,tsx,js,jsx,yaml,yml}",
     "fix:formatting": "prettier --check src/**/*.{json,ts,tsx,js,jsx,yaml,yml}",
-    "preversion": "npm-run-all clean build test update-version",
+    "git-tag": "cross-var git tag v$npm_package_version",
+    "test-publish": "npm run ready-build && npm pack --dry-run",
+    "publish": "npm run ready-build && git-tag && npm publish",
+    "ready-build": "npm-run-all clean build test update-version",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -30,10 +33,15 @@
   "author": {
     "name": "igloo15"
   },
+  "files": [
+    "/dist",
+    "package.json"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
+    "cross-var": "^1.1.0",
     "eslint": "^6.8.0",
     "git-describe": "^4.0.4",
     "npm-run-all": "^4.1.5",
@@ -45,6 +53,6 @@
     "write-pkg": "^4.0.0"
   },
   "readme": "ERROR: No README data found!",
-  "_id": "@igloo15/basic-typescript-lib@0.2.0-dev.1",
-  "date": "Wed Feb 05 2020"
+  "_id": "@igloo15/basic-typescript-lib@0.2.0-dev.3",
+  "date": "Thu Feb 06 2020"
 }
