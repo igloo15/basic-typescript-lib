@@ -13,7 +13,7 @@ if(gitInfo.distance > 0) {
 }
 console.log(version);
 console.log(dateString);
-
+pkg.oldVersion = pkg.version;
 pkg.version = version;
 pkg.date = dateString;
 
