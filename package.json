@@ -5,7 +5,8 @@
   "description": "basic typescript lib",
   "main": "index.js",
   "scripts": {
-    "update-version": "node ./config/update-version.js",
+    "update-version": "npm-run-all update-version-pkg update-version-file",
+    "update-version-pkg": "node ./config/update-version.js",
     "update-version-file": "node ./config/update-version-file.js",
     "build": "npm run clean && npm run src-build",
     "src-build": "tsc -p tsconfig.json",
