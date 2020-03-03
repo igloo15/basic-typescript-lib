@@ -1,5 +1,5 @@
 const replace = require("replace-in-file");
-const oldVersion = require("../package.json").oldVersion;
+let oldVersion = require("../package.json").oldVersion;
 const version = require("../package.json").version;
 
 if (!oldVersion) {

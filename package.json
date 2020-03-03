@@ -1,15 +1,13 @@
 {
   "name": "@igloo15/basic-typescript-lib",
-  "oldVersion": "0.2.0-dev.4",
-  "version": "0.2.0-dev.5",
+  "oldVersion": "0.2.0-dev.5",
+  "version": "0.2.0-dev.6",
   "description": "basic typescript lib",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "scripts": {
     "update-version": "npm-run-all update-version-pkg update-version-file",
     "update-version-pkg": "node ./config/update-version.js",
     "update-version-file": "node ./config/update-version-file.js",
-    "build": "npm run clean && npm run src-build",
-    "src-build": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
     "lint": "eslint src/**",
     "test": "npm-run-all test:*",
@@ -17,9 +15,14 @@
     "test:formatting": "prettier --write src/**/*.{json,ts,tsx,js,jsx,yaml,yml}",
     "fix:formatting": "prettier --check src/**/*.{json,ts,tsx,js,jsx,yaml,yml}",
     "git-tag": "cross-var git tag v$npm_package_version",
+    "serve": "webpack-dev-server --open",
+    "docs": "typedoc --theme markdown --readme docs/README.md --out docs/api src",
+    "pack": "npm pack",
+    "build:webpack": "webpack",
+    "build:production": "webpack --config ./webpack.config.prod.js",
+    "ready-build": "npm-run-all clean test build:production update-version",
     "test-deploy": "npm run ready-build && npm pack --dry-run",
-    "deploy": "npm run ready-build && npm run git-tag && npm publish --access=public",
-    "ready-build": "npm-run-all clean test build update-version"
+    "deploy": "npm run ready-build && npm run git-tag && npm publish --access=public"
   },
   "repository": {
     "type": "git",
@@ -42,16 +45,24 @@
     "@typescript-eslint/parser": "^2.19.0",
     "cross-var": "^1.1.0",
     "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
     "git-describe": "^4.0.4",
+    "html-webpack-plugin": "^3.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "read-pkg": "^5.2.0",
     "replace-in-file": "^5.0.2",
     "rimraf": "^3.0.1",
+    "terser-webpack-plugin": "^2.3.5",
+    "ts-loader": "^6.2.1",
+    "typedoc": "^0.16.11",
+    "typedoc-plugin-markdown": "^2.2.17",
     "typescript": "^3.7.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
     "write-pkg": "^4.0.0"
   },
   "readme": "ERROR: No README data found!",
   "_id": "@igloo15/basic-typescript-lib@0.2.0-dev.5",
-  "date": "Thu Feb 06 2020"
+  "date": "Tue Mar 03 2020"
 }
