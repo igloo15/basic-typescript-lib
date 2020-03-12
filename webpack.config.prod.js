@@ -1,24 +1,11 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+const basePlugin = require('./webpack.config');
 
 module.exports = {
     entry: './src/index.ts',
     mode: 'production',
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                enforce: 'pre',
-                use: 'eslint-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
-    },
+    module: basePlugin.module,
     resolve: {
         extensions: [ '.tsx', '.ts', '.js' ]
     },

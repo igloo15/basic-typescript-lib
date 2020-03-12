@@ -9,11 +9,28 @@ module.exports = {
     },
     module: {
         rules: [
+            
             {
                 enforce: 'pre',
                 test: /\.tsx?$/,
                 use: 'eslint-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    'style-loader',
+                    // Translates CSS into CommonJS
+                    'css-loader',
+                    // Compiles Sass to CSS
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('sass'),
+                        }    
+                    }
+                ],
             },
             {
                 test: /\.tsx?$/,
